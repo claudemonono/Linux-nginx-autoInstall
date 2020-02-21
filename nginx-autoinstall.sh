@@ -320,7 +320,7 @@ case $OPTION in
 		if [[ ! -e /etc/nginx/nginx.conf ]]; then
 			mkdir -p /etc/nginx
 			cd /etc/nginx || exit 1
-			wget https://raw.githubusercontent.com/Angristan/nginx-autoinstall/master/conf/nginx.conf
+			wget https://raw.githubusercontent.com/claudemonono/Linux-nginx-autoInstall/master/nginx.conf
 		fi
 		cd /usr/local/src/nginx/nginx-${NGINX_VER} || exit 1
 
@@ -449,14 +449,14 @@ case $OPTION in
 		# Utilisation du script systemd officiel et de la configuration logrotate de nginx.org
 		if [[ ! -e /lib/systemd/system/nginx.service ]]; then
 			cd /lib/systemd/system/ || exit 1
-			wget https://raw.githubusercontent.com/Angristan/nginx-autoinstall/master/conf/nginx.service
+			wget https://raw.githubusercontent.com/claudemonono/Linux-nginx-autoInstall/master/nginx.service
 			# Activer le démarrage de nginx lors d'un boot
 			systemctl enable nginx
 		fi
 
 		if [[ ! -e /etc/logrotate.d/nginx ]]; then
 			cd /etc/logrotate.d/ || exit 1
-			wget https://raw.githubusercontent.com/Angristan/nginx-autoinstall/master/conf/nginx-logrotate -O nginx
+			wget https://github.com/claudemonono/Linux-nginx-autoInstall/edit/master/nginx-logrotate -O nginx
 		fi
 
 		# Le répertoire de cache de Nginx n'est pas créé par défaut
@@ -531,12 +531,12 @@ case $OPTION in
 		fi
 
 		
-		echo "Uninstallation done."
+		echo "Désinstallation finie."
 
 		exit
 	;;
-	3) # Update the script
-		wget https://github.com/claudemonono/Linux-nginx-autoInstall/blob/master/nginx-autoinstall.sh -O nginx-autoinstall.sh
+	3) # M-à-j du script
+		wget https://raw.githubusercontent.com/claudemonono/Linux-nginx-autoInstall/master/nginx-autoinstall.sh -O nginx-autoinstall.sh
 		chmod +x nginx-autoinstall.sh
 		echo ""
 		echo "Update done."
@@ -544,7 +544,7 @@ case $OPTION in
 		./nginx-autoinstall.sh
 		exit
 	;;
-	4) # Install Bad Bot Blocker
+	4) # Installer Bad Bot Blocker
 		echo ""
 		echo "Cela installera Nginx Bad Bot et le bloqueur d'agent utilisateur."
 		echo ""
@@ -552,7 +552,7 @@ case $OPTION in
 		read -n1 -r -p "appuyez sur n'importe quelle touche pour continuer ..."
 		echo ""
 
-		wget https://raw.githubusercontent.com/claudemonono/Linux-nginx-autoInstall/master/nginx-blocker?token=AIGKZNWCK35IXSMHGJYWRJ26J62FY -O /usr/local/sbin/install-ngxblocker
+		wget https://raw.githubusercontent.com/claudemonono/Linux-nginx-autoInstall/master/nginx-blocker -O /usr/local/sbin/install-ngxblocker
 		chmod +x /usr/local/sbin/install-ngxblocker
 
 		echo ""
